@@ -13,6 +13,8 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    //TODO idea: define abstract base entity
+    //TODO idea: set to passive instead of removing
     @Column(name = "name")
     private String name;
     @Column(name = "parent_company")
