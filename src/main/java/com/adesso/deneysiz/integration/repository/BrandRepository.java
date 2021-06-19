@@ -1,8 +1,6 @@
-package com.adesso.deneysiz.repository;
+package com.adesso.deneysiz.integration.repository;
 
-import com.adesso.deneysiz.entity.Brand;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.adesso.deneysiz.integration.entity.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

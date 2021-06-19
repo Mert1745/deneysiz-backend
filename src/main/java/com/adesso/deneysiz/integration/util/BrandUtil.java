@@ -1,9 +1,9 @@
-package com.adesso.deneysiz.util;
+package com.adesso.deneysiz.integration.util;
 
-import com.adesso.deneysiz.entity.Brand;
-import com.adesso.deneysiz.entity.BrandDTO;
-import com.adesso.deneysiz.entity.Category;
-import com.adesso.deneysiz.entity.Certificate;
+import com.adesso.deneysiz.integration.entity.Brand;
+import com.adesso.deneysiz.integration.entity.BrandDTO;
+import com.adesso.deneysiz.integration.entity.Category;
+import com.adesso.deneysiz.integration.entity.Certificate;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

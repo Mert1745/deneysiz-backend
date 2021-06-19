@@ -1,10 +1,10 @@
-package com.adesso.deneysiz.service;
+package com.adesso.deneysiz.integration.service;
 
-import com.adesso.deneysiz.entity.Brand;
-import com.adesso.deneysiz.entity.BrandDTO;
-import com.adesso.deneysiz.entity.Category;
-import com.adesso.deneysiz.repository.BrandRepository;
-import com.adesso.deneysiz.util.BrandUtil;
+import com.adesso.deneysiz.integration.entity.Brand;
+import com.adesso.deneysiz.integration.entity.BrandDTO;
+import com.adesso.deneysiz.integration.entity.Category;
+import com.adesso.deneysiz.integration.repository.BrandRepository;
+import com.adesso.deneysiz.integration.util.BrandUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

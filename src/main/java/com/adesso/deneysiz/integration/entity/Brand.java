@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.entity;
+package com.adesso.deneysiz.integration.entity;
 
 import lombok.Getter;
 import lombok.Setter;

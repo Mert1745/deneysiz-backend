@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.util;
+package com.adesso.deneysiz.integration.util;
 
 import lombok.Getter;
 import lombok.Setter;

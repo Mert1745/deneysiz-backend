@@ -1,9 +1,9 @@
-package com.adesso.deneysiz.controller;
+package com.adesso.deneysiz.integration.controller;
 
-import com.adesso.deneysiz.entity.BrandDTO;
-import com.adesso.deneysiz.entity.CategoryDTO;
-import com.adesso.deneysiz.service.BrandService;
-import com.adesso.deneysiz.util.BrandResponseBuilder;
+import com.adesso.deneysiz.integration.entity.BrandDTO;
+import com.adesso.deneysiz.integration.entity.CategoryDTO;
+import com.adesso.deneysiz.integration.service.BrandService;
+import com.adesso.deneysiz.integration.util.BrandResponseBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +29,7 @@ public class BrandController {
         }
         return BrandResponseBuilder.<List<BrandDTO>>getInstance().
                 brands(mappedBrands)
-                .status(HttpStatus.OK.value());
+                .status(HttpStatus.OK.value())
+                .message("Success");
     }
 }
