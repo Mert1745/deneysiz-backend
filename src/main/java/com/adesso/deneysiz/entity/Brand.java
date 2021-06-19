@@ -19,20 +19,20 @@ public class Brand {
     private String name;
     @Column(name = "parent_company")
     private String parentCompany;
-    @Column(name = "is_offer_in_china")
-    private boolean isOfferInChina;
+    @Column(name = "offer_in_china")
+    private boolean offerInChina;
     @Column(name = "category")
     private String category;
-    @Column(name = "is_parent_company_experiment")
-    private boolean isParentCompanyExperiment;
+    @Column(name = "parent_company_safe")
+    private boolean parentCompanySafe;
     @Column(name = "shop_name")
     private String shopName;
     @Column(name = "certificate")
     private String certificate;
-    @Column(name = "is_experiment")
-    private boolean isExperiment;
-    @Column(name = "is_vegan")
-    private boolean isVegan;
+    @Column(name = "is_safe")
+    private boolean isSafe;
+    @Column(name = "vegan")
+    private boolean vegan;
     @Column(name = "has_vegan_product")
     private boolean hasVeganProduct;
 
@@ -45,14 +45,14 @@ public class Brand {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", parentCompany='" + parentCompany + '\'' +
-                ", isOfferInChina=" + isOfferInChina +
+                ", offerInChina=" + offerInChina +
                 ", category='" + category + '\'' +
-                ", isParentCompanyExperiment=" + isParentCompanyExperiment +
-                ", shopName=" + shopName +
+                ", parentCompanySafe=" + parentCompanySafe +
+                ", shopName='" + shopName + '\'' +
                 ", certificate='" + certificate + '\'' +
-                ", isExperiment='" + isExperiment + '\'' +
-                ", isVegan='" + isVegan + '\'' +
-                ", hasVeganProduct='" + hasVeganProduct + '\'' +
+                ", isSafe=" + isSafe +
+                ", vegan=" + vegan +
+                ", hasVeganProduct=" + hasVeganProduct +
                 '}';
     }
 }

@@ -10,8 +10,6 @@ import java.util.List;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
-    List<Brand> findBrandsById(Long id);
-
-    //TODO mkose consider pagination
-    Page<Brand> findAll(Pageable pageable);
+    List<Brand> findBrandsByCategory(String categoryName);
+    List<Brand> findAll();
 }

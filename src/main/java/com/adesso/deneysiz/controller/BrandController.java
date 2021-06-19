@@ -1,28 +1,34 @@
 package com.adesso.deneysiz.controller;
 
-import com.adesso.deneysiz.entity.Brand;
-import com.adesso.deneysiz.repository.BrandRepository;
+import com.adesso.deneysiz.entity.BrandDTO;
+import com.adesso.deneysiz.entity.CategoryDTO;
+import com.adesso.deneysiz.service.BrandService;
+import com.adesso.deneysiz.util.BrandResponseBuilder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/brands")
+@RequestMapping
 @RequiredArgsConstructor
 public class BrandController {
-    private final BrandRepository brandRepository;
+    private final BrandService brandService;
 
-    @GetMapping
-    public ResponseEntity<Page<Brand>> getBrands(Pageable pageable) {
-        //TODO mkose put Service layer
-        Page<Brand> brands = brandRepository.findAll(pageable);
-        return new ResponseEntity<>(brands, HttpStatus.OK);
+    @PostMapping("/brandsByCategory")
+    public BrandResponseBuilder<List<BrandDTO>> getBrandsByCategory(@RequestBody CategoryDTO categoryDTO) {
+        final List<BrandDTO> mappedBrands;
+        try {
+            mappedBrands = brandService.getMappedBrands(categoryDTO.getCategoryId());
+        } catch (Exception e) {
+            return BrandResponseBuilder.<List<BrandDTO>>getInstance().
+                    message(e.getMessage())
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        }
+        return BrandResponseBuilder.<List<BrandDTO>>getInstance().
+                brands(mappedBrands)
+                .status(HttpStatus.OK.value());
     }
 }
