@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.integration.controller;
+package com.adesso.deneysiz.integration.resource;
 
 import com.adesso.deneysiz.integration.entity.BrandDTO;
 import com.adesso.deneysiz.integration.entity.CategoryDTO;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
-public class BrandController {
+public class BrandResource {
     private final BrandService brandService;
 
     @PostMapping("/brandsByCategory")
