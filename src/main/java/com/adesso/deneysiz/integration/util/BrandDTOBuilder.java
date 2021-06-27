@@ -6,71 +6,79 @@ import com.adesso.deneysiz.integration.entity.Certificate;
 import java.util.List;
 
 public class BrandDTOBuilder {
-    private static final BrandDTO BRAND_DTO_INSTANCE = new BrandDTO();
+    public BrandDTO brandDTO;
+    private static BrandDTOBuilder singletonBuilder = null;
 
     private BrandDTOBuilder() {
     }
 
-    public BrandDTO getInstance() {
-        return BRAND_DTO_INSTANCE;
+    public BrandDTOBuilder newBrandDTO() {
+        brandDTO =  new BrandDTO();
+        return this;
+    }
+
+    public BrandDTO getBrandDTO() {
+        return brandDTO;
     }
 
     public static BrandDTOBuilder instance() {
-        return new BrandDTOBuilder();
+        if (singletonBuilder == null)
+            singletonBuilder = new BrandDTOBuilder();
+        return singletonBuilder;
     }
 
     public BrandDTOBuilder withId(Long id) {
-        getInstance().setId(id);
+        brandDTO.setId(id);
         return this;
     }
 
     public BrandDTOBuilder withName(String name) {
-        getInstance().setName(name);
+        brandDTO.setName(name);
         return this;
     }
 
     public BrandDTOBuilder withParentCompany(String parentCompany) {
-        getInstance().setParentCompany(parentCompany);
+        brandDTO.setParentCompany(parentCompany);
         return this;
     }
 
     public BrandDTOBuilder withOfferInChina(boolean offerInChina) {
-        getInstance().setOfferInChina(offerInChina);
+        brandDTO.setOfferInChina(offerInChina);
         return this;
     }
 
     public BrandDTOBuilder withParentCompanySafe(boolean isParentCompanySafe) {
-        getInstance().setParentCompanySafe(isParentCompanySafe);
+        brandDTO.setParentCompanySafe(isParentCompanySafe);
         return this;
     }
 
     public BrandDTOBuilder withSafe(boolean safe) {
-        getInstance().setSafe(safe);
+        brandDTO.setSafe(safe);
         return this;
     }
 
     public BrandDTOBuilder withVegan(boolean vegan) {
-        getInstance().setVegan(vegan);
+        brandDTO.setVegan(vegan);
         return this;
     }
 
     public BrandDTOBuilder withHasVeganProduct(boolean hasVeganProduct) {
-        getInstance().setHasVeganProduct(hasVeganProduct);
+        brandDTO.setHasVeganProduct(hasVeganProduct);
         return this;
     }
 
     public BrandDTOBuilder withCategory(int category) {
-        getInstance().setCategory(category);
+        brandDTO.setCategory(category);
         return this;
     }
 
     public BrandDTOBuilder withCertificate(List<Certificate> certificateList) {
-        getInstance().setCertificate(certificateList);
+        brandDTO.setCertificate(certificateList);
         return this;
     }
 
     public BrandDTOBuilder withShopName(List<String> shopName) {
-        getInstance().setShopName(shopName);
+        brandDTO.setShopName(shopName);
         return this;
     }
 }

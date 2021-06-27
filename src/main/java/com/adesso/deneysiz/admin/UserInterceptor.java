@@ -16,7 +16,7 @@ public class UserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        if (request.getRequestURI().equals("/admin/login")) {
+        if (request.getRequestURI().equals("/admin/login") || request.getRequestURI().equals("/brandsByCategory")) {
             return true;
         }
         String token = request.getHeader(AUTHORIZATION);

@@ -23,9 +23,11 @@ public class BrandUtil {
 
     public List<BrandDTO> mapBrandsToBrandsDTO(final List<Brand> brandsByCategory) {
         List<BrandDTO> brandDTOList = new ArrayList<>();
+        BrandDTO brandDTO;
 
-        brandsByCategory.forEach(brand -> {
-            BrandDTO brandDTO = BrandDTOBuilder.instance()
+        for (Brand brand : brandsByCategory) {
+            brandDTO = BrandDTOBuilder.instance()
+                    .newBrandDTO()
                     .withId(brand.getId())
                     .withName(brand.getName())
                     .withParentCompany(brand.getParentCompany())
@@ -38,10 +40,10 @@ public class BrandUtil {
                     .withCategory(getCategoryIdByCategoryName(brand.getCategory()))
                     .withCertificate(getCertificateList(brand.getCertificate()))
                     .withShopName(getShopNameList(brand.getShopName()))
-                    .getInstance();
+                    .getBrandDTO();
 
             brandDTOList.add(brandDTO);
-        });
+        }
 
         return brandDTOList;
     }

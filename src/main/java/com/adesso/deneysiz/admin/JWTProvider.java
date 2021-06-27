@@ -24,6 +24,9 @@ public class JWTProvider {
     }
 
     public boolean isTokenValid(String token) {
+        if (token == null) {
+            return false;
+        }
         String userName = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
                 .build()
                 .verify(token.replace(TOKEN_PREFIX, ""))
