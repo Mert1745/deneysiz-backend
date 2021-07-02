@@ -1,8 +1,6 @@
 package com.adesso.deneysiz.admin.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +9,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "users")
 public class User implements Serializable {
     @Id
@@ -20,18 +19,12 @@ public class User implements Serializable {
     private String userName;
     @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    private String role;
 
-    public User(String userName, String password) {
+    public User(String userName, String password, String role) {
         this.userName = userName;
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        this.role = role;
     }
 }
