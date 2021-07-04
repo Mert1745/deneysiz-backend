@@ -36,4 +36,9 @@ public class UserService {
         final String token = jwtProvider.createToken(user);
         return AdminResponseBuilder.getInstance().status(HttpStatus.OK.value()).success(true).token(token);
     }
+
+    public User saveUser(UserDTO userDTO) {
+        final User user = new User(userDTO.getUserName(), bCryptPasswordEncoder.encode(userDTO.getPassword()), userDTO.getRole());
+        return userRepository.save(user);
+    }
 }

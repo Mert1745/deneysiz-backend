@@ -2,12 +2,10 @@ package com.adesso.deneysiz.admin;
 
 import com.adesso.deneysiz.admin.entity.User;
 import com.adesso.deneysiz.admin.entity.UserDTO;
-import com.adesso.deneysiz.admin.repository.UserRepository;
+import com.adesso.deneysiz.admin.service.AdminService;
 import com.adesso.deneysiz.integration.entity.Brand;
-import com.adesso.deneysiz.integration.repository.BrandRepository;
+import com.adesso.deneysiz.integration.entity.BrandDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,34 +15,31 @@ import java.util.List;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class AdminResource {
-    private final UserRepository userRepository;
-    private final BrandRepository brandRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserService userService;
+    private final AdminService adminService;
 
     @PostMapping("/login")
     public AdminResponseBuilder login(@RequestBody UserDTO userDTO) {
         return userService.getLoginResponse(userDTO);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/saveUser")
     public User saveUser(@RequestBody UserDTO userDTO) {
-        final User user = new User(userDTO.getUserName(), bCryptPasswordEncoder.encode(userDTO.getPassword()), userDTO.getRole());
-        return userRepository.save(user);
+        return userService.saveUser(userDTO);
     }
 
     @PostMapping("/addBrand")
     public boolean addBrand(@RequestBody Brand brand) {
-        try {
-            brandRepository.save(brand);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+        return adminService.saveNewBrand(brand);
     }
 
     @GetMapping("/getAllBrands")
     public List<Brand> getAllBrands() {
-        return brandRepository.findAll();
+        return adminService.getAllBrands();
+    }
+
+    @PostMapping("/deleteBrandById")
+    public boolean deleteBrandById(@RequestBody BrandDTO brandDTO) {
+        return adminService.deleteBrandById(brandDTO.getId());
     }
 }
