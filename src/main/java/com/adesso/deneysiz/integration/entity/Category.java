@@ -13,7 +13,7 @@ public enum Category {
     HAIR_CARE(4, "Saç Bakım"),
     HAIR_DYES(5, "Saç Boyaları"),
     SUN_CREAMS(6, "Güneş Kremleri"),
-    BODY_CARE(7, "Vücut Bakım"),
+    BODY_CARE(7, "Vücut Bakımı"),
     ALL(8, "Tüm Markalar"),
     ;
 
