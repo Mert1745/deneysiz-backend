@@ -3,6 +3,7 @@ package com.adesso.deneysiz.admin;
 import com.adesso.deneysiz.admin.entity.User;
 import com.adesso.deneysiz.admin.entity.UserDTO;
 import com.adesso.deneysiz.admin.service.AdminService;
+import com.adesso.deneysiz.admin.service.UserService;
 import com.adesso.deneysiz.integration.entity.Brand;
 import com.adesso.deneysiz.integration.entity.BrandDTO;
 import lombok.RequiredArgsConstructor;
