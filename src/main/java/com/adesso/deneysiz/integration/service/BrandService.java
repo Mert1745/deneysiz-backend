@@ -23,4 +23,8 @@ public class BrandService {
                 : repository.findBrandsByCategory(categoryName);
         return brandUtil.mapBrandsToBrandsDTO(brandsByCategory);
     }
+
+    public Brand addNewBrand(final Brand brand) {
+        return repository.save(brand);
+    }
 }

@@ -33,6 +33,16 @@ public class AdminResource {
         return userRepository.save(user);
     }
 
+    @PostMapping("/addBrand")
+    public boolean addBrand(@RequestBody Brand brand) {
+        try {
+            brandRepository.save(brand);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
     @GetMapping("/getAllBrands")
     public List<Brand> getAllBrands() {
         return brandRepository.findAll();
