@@ -37,4 +37,9 @@ public class BrandResource {
     public ResponseBuilder<List<BrandDTO>> listBrands(@RequestBody CategoryDTO categoryDTO) {
         return brandService.listMappedBrands(categoryDTO.getCategoryId());
     }
+
+    @PostMapping("/detail")
+    public ResponseBuilder<List<BrandDTO>> getBrandsById(@RequestBody Brand brand) {
+        return brandService.getBrandsById(brand.getId());
+    }
 }

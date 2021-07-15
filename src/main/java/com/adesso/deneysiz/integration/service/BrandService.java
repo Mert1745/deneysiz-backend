@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -20,6 +21,7 @@ public class BrandService {
     private static final String SEARCH_SUCCESS = "Searched Successfully";
     private static final String ADDED_SUCCESSFULLY = "Added Successfully";
     private static final String ERROR_MESSAGE = "Error occured. Root cause is ";
+    private static final String BRAND_NOT_FOUND = "Brand Not Found";
 
     private final BrandRepository brandRepository;
     private final BrandUtil brandUtil;
@@ -28,7 +30,7 @@ public class BrandService {
         try {
             final List<Brand> brandsByCategory = getBrandsByCategory(categoryID);
             final List<BrandDTO> mappedBrands = brandUtil.mapBrandsToBrandsDTO(brandsByCategory);
-            return getSuccessResponse(mappedBrands, SUCCESS);
+            return getSuccessResponse(mappedBrands, HttpStatus.OK, SUCCESS);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
@@ -38,7 +40,7 @@ public class BrandService {
         try {
             final List<Brand> brandsByCategory = getBrandsByCategory(categoryID);
             final List<BrandDTO> mappedBrands = brandUtil.mapBrandsToLessDetailedBrandDTO(brandsByCategory);
-            return getSuccessResponse(mappedBrands, SUCCESS);
+            return getSuccessResponse(mappedBrands, HttpStatus.OK, SUCCESS);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
@@ -54,7 +56,7 @@ public class BrandService {
     public ResponseBuilder<List<Brand>> addNewBrand(final Brand brand) {
         try {
             final Brand savedBrand = brandRepository.save(brand);
-            return getSuccessResponse(Collections.singletonList(savedBrand), ADDED_SUCCESSFULLY);
+            return getSuccessResponse(Collections.singletonList(savedBrand), HttpStatus.OK, ADDED_SUCCESSFULLY);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new Brand()), e);
         }
@@ -64,16 +66,28 @@ public class BrandService {
         try {
             final List<Brand> brands = brandRepository.findByNameContainingIgnoreCaseOrParentCompanyContainingIgnoreCase(query, query);
             final List<BrandDTO> mappedBrands = brandUtil.mapBrandsToLessDetailedBrandDTO(brands);
-            return getSuccessResponse(mappedBrands, SEARCH_SUCCESS);
+            return getSuccessResponse(mappedBrands, HttpStatus.OK, SEARCH_SUCCESS);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
     }
 
-    private <T> ResponseBuilder<List<T>> getSuccessResponse(List<T> mappedBrands, String message) {
+    public ResponseBuilder<List<BrandDTO>> getBrandsById(final Long id) {
+        try {
+            Optional<Brand> brand = brandRepository.findById(id);
+            return getSuccessResponse(brand.isPresent() ? brandUtil.mapBrandsToBrandsDTO(Collections.singletonList(brand.get())) :
+                            Collections.singletonList(new BrandDTO()),
+                    brand.isPresent() ? HttpStatus.OK : HttpStatus.NOT_FOUND,
+                    brand.isPresent() ? SUCCESS : BRAND_NOT_FOUND);
+        } catch (Exception e) {
+            return getFailedError(Collections.singletonList(new BrandDTO()), e);
+        }
+    }
+
+    private <T> ResponseBuilder<List<T>> getSuccessResponse(List<T> mappedBrands, HttpStatus httpStatus, String message) {
         return ResponseBuilder.<List<T>>getInstance().
                 data(mappedBrands)
-                .status(HttpStatus.OK.value())
+                .status(httpStatus.value())
                 .message(message);
     }
 
