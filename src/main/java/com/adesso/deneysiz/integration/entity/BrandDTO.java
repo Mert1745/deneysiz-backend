@@ -14,8 +14,7 @@ public class BrandDTO {
     private String name;
     private String parentCompany;
     private boolean offerInChina;
-    private int category;
-    //TODO mkose categoryId'e ve String'e çevir
+    private String categoryId;
     private boolean parentCompanySafe;
     private List<String> shopName;
     private List<Certificate> certificate;

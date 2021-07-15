@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Certificate {
-    private String certificate;
+    private String name;
     private boolean valid;
 }
