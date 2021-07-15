@@ -81,4 +81,8 @@ public class BrandDTOBuilder {
         brandDTO.setShopName(shopName);
         return this;
     }
+    public BrandDTOBuilder withScore(int score) {
+        brandDTO.setScore(score);
+        return this;
+    }
 }

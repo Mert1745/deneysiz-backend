@@ -1,5 +1,6 @@
 package com.adesso.deneysiz.integration.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class BrandDTO {
     private Long id;
     private String name;
@@ -20,4 +22,5 @@ public class BrandDTO {
     private boolean isSafe;
     private boolean vegan;
     private boolean hasVeganProduct;
+    private int score;
 }

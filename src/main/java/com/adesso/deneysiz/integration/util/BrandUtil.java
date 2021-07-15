@@ -48,6 +48,23 @@ public class BrandUtil {
         return brandDTOList;
     }
 
+    public List<BrandDTO> mapQueryBrandsToBrandDTO(List<Brand> brands) {
+        List<BrandDTO> brandDTOList = new ArrayList<>();
+        BrandDTO brandDTO;
+
+        for (Brand brand : brands) {
+            brandDTO = BrandDTOBuilder.instance()
+                    .newBrandDTO()
+                    .withId(brand.getId())
+                    .withName(brand.getName())
+                    .withParentCompany(brand.getParentCompany())
+                    .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
+                    .getBrandDTO();
+            brandDTOList.add(brandDTO);
+        }
+        return brandDTOList;
+    }
+
     private List<String> getShopNameList(String shopNames) {
         return Arrays.asList(shopNames.split(","));
     }
@@ -69,5 +86,14 @@ public class BrandUtil {
         allCertificateNames.forEach(certificateName ->
                 allCertificates.add(new Certificate(certificateName, setOfCertificate.contains(certificateName))));
         return allCertificates;
+    }
+
+    private int getBrandScore(boolean safe, boolean parentCompanySafe, boolean vegan, boolean offerInChina) {
+        int total = 0;
+        total = total + (safe ? 4 : 0);
+        total = total + (parentCompanySafe ? 2 : 0);
+        total = total + (vegan ? 2 : 0);
+        total = total + (offerInChina ? 4 : 0);
+        return total;
     }
 }
