@@ -21,33 +21,11 @@ public class BrandResource {
 
     @PostMapping("/byCategory")
     public ResponseBuilder<List<BrandDTO>> getBrandsByCategory(@RequestBody CategoryDTO categoryDTO) {
-        final List<BrandDTO> mappedBrands;
-        try {
-            mappedBrands = brandService.getMappedBrands(categoryDTO.getCategoryId());
-        } catch (Exception e) {
-            return ResponseBuilder.<List<BrandDTO>>getInstance().
-                    message(e.getMessage())
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        }
-        return ResponseBuilder.<List<BrandDTO>>getInstance().
-                data(mappedBrands)
-                .status(HttpStatus.OK.value())
-                .message("Success");
+        return brandService.getMappedBrands(categoryDTO.getCategoryId());
     }
 
     @PostMapping("/add")
     public ResponseBuilder<Brand> getBrandsByCategory(@RequestBody Brand brand) {
-        try {
-            final Brand saved = brandService.addNewBrand(brand);
-            return ResponseBuilder.<Brand>getInstance().
-                    data(saved)
-                    .status(HttpStatus.OK.value())
-                    .message("Added Successfully");
-        } catch (Exception e) {
-            return ResponseBuilder.<Brand>getInstance().
-                    data(null)
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                    .message("Could not added. Error cause: " + Arrays.toString(e.getStackTrace()));
-        }
+        return brandService.addNewBrand(brand);
     }
 }
