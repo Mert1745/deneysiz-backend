@@ -10,10 +10,12 @@ import java.util.List;
 @Setter
 public class BrandDTO {
     private Long id;
+    //TODO mkose String'e çevir.
     private String name;
     private String parentCompany;
     private boolean offerInChina;
     private int category;
+    //TODO mkose categoryId'e ve String'e çevir
     private boolean parentCompanySafe;
     private List<String> shopName;
     private List<Certificate> certificate;

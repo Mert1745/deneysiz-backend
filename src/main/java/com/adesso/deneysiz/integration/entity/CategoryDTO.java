@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class CategoryDTO {
     int categoryId;
+    //TODO mkose String'e çevir
 }
