@@ -14,13 +14,13 @@ public class BrandDTO {
     private Long id;
     private String name;
     private String parentCompany;
-    private boolean offerInChina;
+    private Boolean offerInChina;
     private String categoryId;
-    private boolean parentCompanySafe;
+    private Boolean parentCompanySafe;
     private List<String> shopName;
     private List<Certificate> certificate;
-    private boolean isSafe;
-    private boolean vegan;
-    private boolean hasVeganProduct;
+    private Boolean isSafe;
+    private Boolean vegan;
+    private Boolean hasVeganProduct;
     private int score;
 }

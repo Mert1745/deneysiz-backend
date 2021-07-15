@@ -7,13 +7,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Category {
     MAKEUP(0, "Makyaj"),
-    PERFUME(1, "Parfüm"),
-    SKIN_CARE(2, "Cilt Bakım"),
-    NAIL_CARE(3, "Tırnak Bakım"),
-    HAIR_CARE(4, "Saç Bakım"),
-    HAIR_DYES(5, "Saç Boyaları"),
-    SUN_CREAMS(6, "Güneş Kremleri"),
-    BODY_CARE(7, "Vücut Bakımı"),
+    HAIR_CARE(1, "Saç Bakım"),
+    SKIN_AND_FACE_CARE(2, "Cilt ve Yüz Bakım"),
+    PERFUME(3, "Deodorant ve Parfüm"),
+    PERSONAL_HYGIENE_AND_CARE(4, "Kişisel Hijyen ve Bakım"),
+    TEETH_CARE(5, "Ağız Ve Diş Bakım"),
+    BABY_CARE(6, "Anne ve Bebek Bakım"),
+    HOUSE_CARE(7, "Ev Bakım"),
     ALL(8, "Tüm Markalar"),
     ;
 

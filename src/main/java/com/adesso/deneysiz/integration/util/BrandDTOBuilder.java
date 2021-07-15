@@ -53,7 +53,7 @@ public class BrandDTOBuilder {
     }
 
     public BrandDTOBuilder withSafe(boolean safe) {
-        brandDTO.setSafe(safe);
+        brandDTO.setIsSafe(safe);
         return this;
     }
 
