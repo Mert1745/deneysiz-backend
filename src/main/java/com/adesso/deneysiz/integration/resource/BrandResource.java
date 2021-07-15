@@ -24,11 +24,17 @@ public class BrandResource {
     }
 
     @PostMapping("/add")
-    public ResponseBuilder<Brand> addNewBrand(@RequestBody Brand brand) {
+    public ResponseBuilder<List<Brand>> addNewBrand(@RequestBody Brand brand) {
         return brandService.addNewBrand(brand);
     }
+
     @PostMapping("/search")
     public ResponseBuilder<List<BrandDTO>> searchByNameAndCategoryName(@RequestBody NameDTO nameDTO) {
-        return brandService.searchByNameAndCategoryName(nameDTO);
+        return brandService.searchByNameAndCategoryName(nameDTO.getQuery());
+    }
+
+    @PostMapping("/list")
+    public ResponseBuilder<List<BrandDTO>> listBrands(@RequestBody CategoryDTO categoryDTO) {
+        return brandService.listMappedBrands(categoryDTO.getCategoryId());
     }
 }

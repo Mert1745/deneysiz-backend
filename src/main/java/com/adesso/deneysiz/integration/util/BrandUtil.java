@@ -48,7 +48,7 @@ public class BrandUtil {
         return brandDTOList;
     }
 
-    public List<BrandDTO> mapQueryBrandsToBrandDTO(List<Brand> brands) {
+    public List<BrandDTO> mapBrandsToLessDetailedBrandDTO(List<Brand> brands) {
         List<BrandDTO> brandDTOList = new ArrayList<>();
         BrandDTO brandDTO;
 
