@@ -19,7 +19,7 @@ public class JWTProvider {
 
     public String createToken(User user) {
         return JWT.create()
-                .withClaim("username", user.getUserName())
+                .withClaim("userName", user.getUserName())
                 .withClaim("role", user.getRole())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));

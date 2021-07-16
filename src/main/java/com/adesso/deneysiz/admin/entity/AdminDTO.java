@@ -7,8 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class UserDTO {
-    private String userName;
-    private String password;
-    private String role;
+public class AdminDTO {
+    private String token;
+    private Boolean success;
 }

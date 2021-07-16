@@ -22,5 +22,5 @@ public class BrandDTO {
     private Boolean isSafe;
     private Boolean vegan;
     private Boolean hasVeganProduct;
-    private int score;
+    private Integer score;
 }
