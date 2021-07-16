@@ -10,9 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -55,6 +57,12 @@ public class BrandService {
 
     public ResponseBuilder<List<Brand>> addNewBrand(final Brand brand) {
         try {
+            List<Category> categoryList = Arrays.stream(Category.values())
+                    .filter(category -> category.getName().equals(brand.getCategory()))
+                    .collect(Collectors.toList());
+            if (categoryList.isEmpty()) {
+                return ResponseBuilder.<List<Brand>>getInstance().status(HttpStatus.INTERNAL_SERVER_ERROR.value()).message("Category Name is not valid");
+            }
             final Brand savedBrand = brandRepository.save(brand);
             return getSuccessResponse(Collections.singletonList(savedBrand), HttpStatus.OK, ADDED_SUCCESSFULLY);
         } catch (Exception e) {
