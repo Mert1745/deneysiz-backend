@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\r\n    \"name\": \"Cyristal Deodorant\",\r\n    \"parentCompany\": \"Yok\",\r\n    \"offerInChina\": false,\r\n    \"category\": \"Parfüm\",\r\n    \"parentCompanySafe\": true,\r\n    \"shopName\": \"gratis\",\r\n    \"certificate\": \"LB,Peta\",\r\n    \"vegan\": true,\r\n    \"hasVeganProduct\": true,\r\n    \"safe\": true\r\n  }",
+							"raw": "  {\r\n    \"name\": \"Cyristal Deodorant\",\r\n    \"parentCompany\": \"Yok\",\r\n    \"offerInChina\": false,\r\n    \"category\": \"Ev Bakım\",\r\n    \"parentCompanySafe\": true,\r\n    \"certificate\": \"LB,Peta\",\r\n    \"vegan\": true,\r\n    \"hasVeganProduct\": true,\r\n    \"safe\": true,\r\n    \"text\": \"Açıklama\"\r\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
