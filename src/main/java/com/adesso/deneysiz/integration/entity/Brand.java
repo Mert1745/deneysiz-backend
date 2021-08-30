@@ -2,11 +2,13 @@ package com.adesso.deneysiz.integration.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "brand")
 public class Brand {
@@ -25,8 +27,6 @@ public class Brand {
     private String category;
     @Column(name = "parent_company_safe")
     private boolean parentCompanySafe;
-    @Column(name = "shop_name")
-    private String shopName;
     @Column(name = "certificate")
     private String certificate;
     @Column(name = "is_safe")
@@ -37,22 +37,5 @@ public class Brand {
     private boolean hasVeganProduct;
 
     public Brand() {
-    }
-
-    @Override
-    public String toString() {
-        return "Brand{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", parentCompany='" + parentCompany + '\'' +
-                ", offerInChina=" + offerInChina +
-                ", category='" + category + '\'' +
-                ", parentCompanySafe=" + parentCompanySafe +
-                ", shopName='" + shopName + '\'' +
-                ", certificate='" + certificate + '\'' +
-                ", isSafe=" + isSafe +
-                ", vegan=" + vegan +
-                ", hasVeganProduct=" + hasVeganProduct +
-                '}';
     }
 }

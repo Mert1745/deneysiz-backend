@@ -39,7 +39,6 @@ public class BrandUtil {
                     .withHasVeganProduct(brand.isHasVeganProduct())
                     .withCategoryId(String.valueOf(getCategoryIdByCategoryName(brand.getCategory())))
                     .withCertificate(getCertificateList(brand.getCertificate()))
-                    .withShopName(getShopNameList(brand.getShopName()))
                     .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
                     .getBrandDTO();
 

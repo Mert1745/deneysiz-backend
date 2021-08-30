@@ -17,7 +17,6 @@ public class BrandDTO {
     private Boolean offerInChina;
     private String categoryId;
     private Boolean parentCompanySafe;
-    private List<String> shopName;
     private List<Certificate> certificate;
     private Boolean isSafe;
     private Boolean vegan;

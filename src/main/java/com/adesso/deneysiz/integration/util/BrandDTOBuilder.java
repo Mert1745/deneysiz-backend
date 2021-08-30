@@ -76,11 +76,6 @@ public class BrandDTOBuilder {
         brandDTO.setCertificate(certificateList);
         return this;
     }
-
-    public BrandDTOBuilder withShopName(List<String> shopName) {
-        brandDTO.setShopName(shopName);
-        return this;
-    }
     public BrandDTOBuilder withScore(int score) {
         brandDTO.setScore(score);
         return this;
