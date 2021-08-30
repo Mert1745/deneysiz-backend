@@ -40,6 +40,7 @@ public class BrandUtil {
                     .withCategoryId(String.valueOf(getCategoryIdByCategoryName(brand.getCategory())))
                     .withCertificate(getCertificateList(brand.getCertificate()))
                     .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
+                    .withText(brand.getText())
                     .getBrandDTO();
 
             brandDTOList.add(brandDTO);

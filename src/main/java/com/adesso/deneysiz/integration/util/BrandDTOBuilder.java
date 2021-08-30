@@ -80,4 +80,8 @@ public class BrandDTOBuilder {
         brandDTO.setScore(score);
         return this;
     }
+    public BrandDTOBuilder withText(String text) {
+        brandDTO.setText(text);
+        return this;
+    }
 }

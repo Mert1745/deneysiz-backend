@@ -35,6 +35,8 @@ public class Brand {
     private boolean vegan;
     @Column(name = "has_vegan_product")
     private boolean hasVeganProduct;
+    @Column(name = "text")
+    private String text;
 
     public Brand() {
     }
