@@ -2,6 +2,7 @@ package com.adesso.deneysiz.integration.util;
 
 import com.adesso.deneysiz.integration.domain.BrandDTO;
 import com.adesso.deneysiz.integration.domain.Certificate;
+import com.adesso.deneysiz.integration.domain.ParentCompany;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class BrandDTOBuilder {
     }
 
     public BrandDTOBuilder newBrandDTO() {
-        brandDTO =  new BrandDTO();
+        brandDTO = new BrandDTO();
         return this;
     }
 
@@ -37,18 +38,15 @@ public class BrandDTOBuilder {
         return this;
     }
 
-    public BrandDTOBuilder withParentCompany(String parentCompany) {
+    public BrandDTOBuilder withParentCompany(String parentCompanyName, Boolean parentCompanySafe) {
+        ParentCompany parentCompany = new ParentCompany(parentCompanyName.isEmpty() ? null : parentCompanyName,
+                parentCompanyName.isEmpty() ? null : parentCompanySafe);
         brandDTO.setParentCompany(parentCompany);
         return this;
     }
 
     public BrandDTOBuilder withOfferInChina(boolean offerInChina) {
         brandDTO.setOfferInChina(offerInChina);
-        return this;
-    }
-
-    public BrandDTOBuilder withParentCompanySafe(boolean isParentCompanySafe) {
-        brandDTO.setParentCompanySafe(isParentCompanySafe);
         return this;
     }
 
@@ -76,10 +74,12 @@ public class BrandDTOBuilder {
         brandDTO.setCertificate(certificateList);
         return this;
     }
+
     public BrandDTOBuilder withScore(int score) {
         brandDTO.setScore(score);
         return this;
     }
+
     public BrandDTOBuilder withText(String text) {
         brandDTO.setText(text);
         return this;

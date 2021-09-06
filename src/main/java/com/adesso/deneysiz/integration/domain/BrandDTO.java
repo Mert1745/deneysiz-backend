@@ -13,10 +13,9 @@ import java.util.List;
 public class BrandDTO {
     private Long id;
     private String name;
-    private String parentCompany;
+    private ParentCompany parentCompany;
     private Boolean offerInChina;
     private String categoryId;
-    private Boolean parentCompanySafe;
     private List<Certificate> certificate;
     private Boolean isSafe;
     private Boolean vegan;

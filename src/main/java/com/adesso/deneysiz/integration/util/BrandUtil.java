@@ -29,10 +29,8 @@ public class BrandUtil {
                     .newBrandDTO()
                     .withId(brand.getId())
                     .withName(brand.getName())
-                    .withParentCompany(brand.getParentCompany())
+                    .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
                     .withOfferInChina(brand.isOfferInChina())
-                    .withParentCompany(brand.getParentCompany())
-                    .withParentCompanySafe(brand.isParentCompanySafe())
                     .withSafe(brand.isSafe())
                     .withVegan(brand.isVegan())
                     .withHasVeganProduct(brand.isHasVeganProduct())
@@ -57,17 +55,14 @@ public class BrandUtil {
                     .newBrandDTO()
                     .withId(brand.getId())
                     .withName(brand.getName())
-                    .withParentCompany(brand.getParentCompany())
-                    .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
+                    .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
+                    .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
                     .getBrandDTO();
             brandDTOList.add(brandDTO);
         }
         return brandDTOList;
     }
 
-    private List<String> getShopNameList(String shopNames) {
-        return Arrays.asList(shopNames.split(","));
-    }
 
     private int getCategoryIdByCategoryName(final String categoryName) {
         return Arrays.stream(Category.values())
@@ -78,7 +73,7 @@ public class BrandUtil {
 
     private List<Certificate> getCertificateList(final String certificateNames) {
         //TODO mkose learn the last certificate name
-        final List<String> allCertificateNames = List.of(LB.getName(), PETA.getName(), UNILEVER.getName(), XXXX.getName());
+        final List<String> allCertificateNames = Arrays.stream(CertificateName.values()).map(CertificateName::getName).collect(Collectors.toList());
         final String[] arrayOfCertificate = certificateNames.split(",");
         final Set<String> setOfCertificate = new HashSet<>(Arrays.asList(arrayOfCertificate));
         List<Certificate> allCertificates = new ArrayList<>();
@@ -88,12 +83,15 @@ public class BrandUtil {
         return allCertificates;
     }
 
-    private int getBrandScore(boolean safe, boolean parentCompanySafe, boolean vegan, boolean offerInChina) {
+    private int getBrandScore(boolean safe, Boolean parentCompanySafe, boolean vegan, boolean offerInChina) {
         int total = 0;
         total = total + (safe ? 4 : 0);
-        total = total + (parentCompanySafe ? 2 : 0);
         total = total + (vegan ? 2 : 0);
         total = total + (offerInChina ? 4 : 0);
+        if (parentCompanySafe == null) {
+            return total + 2;
+        }
+        total = total + (parentCompanySafe ? 2 : 0);
         return total;
     }
 }
