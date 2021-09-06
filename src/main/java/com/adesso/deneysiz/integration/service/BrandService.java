@@ -1,8 +1,8 @@
 package com.adesso.deneysiz.integration.service;
 
-import com.adesso.deneysiz.integration.entity.Brand;
-import com.adesso.deneysiz.integration.entity.BrandDTO;
-import com.adesso.deneysiz.integration.entity.Category;
+import com.adesso.deneysiz.integration.domain.Brand;
+import com.adesso.deneysiz.integration.domain.BrandDTO;
+import com.adesso.deneysiz.integration.domain.Category;
 import com.adesso.deneysiz.integration.repository.BrandRepository;
 import com.adesso.deneysiz.integration.util.BrandUtil;
 import com.adesso.deneysiz.integration.util.ResponseBuilder;

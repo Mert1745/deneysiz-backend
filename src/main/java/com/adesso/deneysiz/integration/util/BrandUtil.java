@@ -1,13 +1,12 @@
 package com.adesso.deneysiz.integration.util;
 
-import com.adesso.deneysiz.integration.entity.Brand;
-import com.adesso.deneysiz.integration.entity.BrandDTO;
-import com.adesso.deneysiz.integration.entity.Category;
-import com.adesso.deneysiz.integration.entity.Certificate;
+import com.adesso.deneysiz.integration.domain.*;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.adesso.deneysiz.integration.domain.CertificateName.*;
 
 @Component
 public class BrandUtil {
@@ -79,7 +78,7 @@ public class BrandUtil {
 
     private List<Certificate> getCertificateList(final String certificateNames) {
         //TODO mkose learn the last certificate name
-        final List<String> allCertificateNames = new ArrayList<>(Arrays.asList("LB", "Peta", "Unilever", "XXXX"));
+        final List<String> allCertificateNames = List.of(LB.getName(), PETA.getName(), UNILEVER.getName(), XXXX.getName());
         final String[] arrayOfCertificate = certificateNames.split(",");
         final Set<String> setOfCertificate = new HashSet<>(Arrays.asList(arrayOfCertificate));
         List<Certificate> allCertificates = new ArrayList<>();

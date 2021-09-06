@@ -1,7 +1,7 @@
 package com.adesso.deneysiz.admin.service;
 
 import com.adesso.deneysiz.admin.entity.AdminDTO;
-import com.adesso.deneysiz.integration.entity.Brand;
+import com.adesso.deneysiz.integration.domain.Brand;
 import com.adesso.deneysiz.integration.repository.BrandRepository;
 import com.adesso.deneysiz.integration.util.ResponseBuilder;
 import lombok.RequiredArgsConstructor;

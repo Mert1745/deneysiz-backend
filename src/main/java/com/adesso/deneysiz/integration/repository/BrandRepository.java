@@ -1,6 +1,6 @@
 package com.adesso.deneysiz.integration.repository;
 
-import com.adesso.deneysiz.integration.entity.Brand;
+import com.adesso.deneysiz.integration.domain.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

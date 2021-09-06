@@ -1,9 +1,9 @@
 package com.adesso.deneysiz.integration.resource;
 
-import com.adesso.deneysiz.integration.entity.Brand;
-import com.adesso.deneysiz.integration.entity.BrandDTO;
-import com.adesso.deneysiz.integration.entity.CategoryDTO;
-import com.adesso.deneysiz.integration.entity.NameDTO;
+import com.adesso.deneysiz.integration.domain.Brand;
+import com.adesso.deneysiz.integration.domain.BrandDTO;
+import com.adesso.deneysiz.integration.domain.CategoryDTO;
+import com.adesso.deneysiz.integration.domain.NameDTO;
 import com.adesso.deneysiz.integration.service.BrandService;
 import com.adesso.deneysiz.integration.util.ResponseBuilder;
 import lombok.RequiredArgsConstructor;

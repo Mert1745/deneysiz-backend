@@ -1,7 +1,7 @@
 package com.adesso.deneysiz.integration.util;
 
-import com.adesso.deneysiz.integration.entity.BrandDTO;
-import com.adesso.deneysiz.integration.entity.Certificate;
+import com.adesso.deneysiz.integration.domain.BrandDTO;
+import com.adesso.deneysiz.integration.domain.Certificate;
 
 import java.util.List;
 
