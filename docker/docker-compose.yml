@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  db:
+    container_name: deneysiz_db
+    build:
+      context: ../../deneysiz-backend
+      dockerfile: docker/postgres/Dockerfile
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: deneysiz_db
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+
+  app:
+      container_name: deneysiz_backend
+      build:
+        context: ../../deneysiz-backend
+        dockerfile: docker/Dockerfile
+      ports:
+        - "8080:8080"
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/deneysiz_db
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=1234
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      depends_on:
+        - db
+
+volumes:
+  db:
