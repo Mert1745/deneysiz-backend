@@ -16,11 +16,11 @@ public class BrandDTO {
     private ParentCompany parentCompany;
     private Boolean offerInChina;
     private String categoryId;
-    private List<Certificate> certificate;
-    private Boolean isSafe;
+    private List<Certificate> certificates;
+    private Boolean safe;
     private Boolean vegan;
-    private Boolean hasVeganProduct;
+    private Boolean veganProduct;
     private Integer score;
-    private String text;
+    private String description;
     private String createdAt;
 }

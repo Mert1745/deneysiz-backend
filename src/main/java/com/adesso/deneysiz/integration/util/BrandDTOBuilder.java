@@ -54,7 +54,7 @@ public class BrandDTOBuilder {
     }
 
     public BrandDTOBuilder withSafe(boolean safe) {
-        brandDTO.setIsSafe(safe);
+        brandDTO.setSafe(safe);
         return this;
     }
 
@@ -64,7 +64,7 @@ public class BrandDTOBuilder {
     }
 
     public BrandDTOBuilder withHasVeganProduct(boolean hasVeganProduct) {
-        brandDTO.setHasVeganProduct(hasVeganProduct);
+        brandDTO.setVeganProduct(hasVeganProduct);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class BrandDTOBuilder {
     }
 
     public BrandDTOBuilder withCertificate(List<Certificate> certificateList) {
-        brandDTO.setCertificate(certificateList);
+        brandDTO.setCertificates(certificateList);
         return this;
     }
 
@@ -84,7 +84,7 @@ public class BrandDTOBuilder {
     }
 
     public BrandDTOBuilder withText(String text) {
-        brandDTO.setText(text);
+        brandDTO.setDescription(text);
         return this;
     }
 
