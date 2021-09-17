@@ -25,7 +25,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/login").permitAll()
-                .antMatchers("/brandsByCategory").permitAll()
+                .antMatchers("/brands/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
