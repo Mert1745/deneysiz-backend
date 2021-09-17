@@ -4,6 +4,9 @@ import com.adesso.deneysiz.integration.domain.BrandDTO;
 import com.adesso.deneysiz.integration.domain.Certificate;
 import com.adesso.deneysiz.integration.domain.ParentCompany;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class BrandDTOBuilder {
@@ -82,6 +85,13 @@ public class BrandDTOBuilder {
 
     public BrandDTOBuilder withText(String text) {
         brandDTO.setText(text);
+        return this;
+    }
+
+    public BrandDTOBuilder withCreatedAt(Date createdAt) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = dateFormat.format(createdAt);
+        brandDTO.setCreatedAt(date);
         return this;
     }
 }

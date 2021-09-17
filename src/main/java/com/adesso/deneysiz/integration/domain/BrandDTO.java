@@ -22,4 +22,5 @@ public class BrandDTO {
     private Boolean hasVeganProduct;
     private Integer score;
     private String text;
+    private String createdAt;
 }

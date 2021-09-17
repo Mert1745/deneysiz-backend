@@ -38,6 +38,7 @@ public class BrandUtil {
                     .withCertificate(getCertificateList(brand.getCertificate()))
                     .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
                     .withText(brand.getText())
+                    .withCreatedAt(brand.getCreatedAt())
                     .getBrandDTO();
 
             brandDTOList.add(brandDTO);

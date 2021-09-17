@@ -1,6 +1,7 @@
 package com.adesso.deneysiz.integration.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@NoArgsConstructor
 @Table(name = "brand")
 public class Brand {
     @Id
@@ -43,7 +45,4 @@ public class Brand {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
-
-    public Brand() {
-    }
 }
