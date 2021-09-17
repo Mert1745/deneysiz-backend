@@ -3,8 +3,10 @@ package com.adesso.deneysiz.integration.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -37,6 +39,10 @@ public class Brand {
     private boolean hasVeganProduct;
     @Column(name = "text")
     private String text;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
 
     public Brand() {
     }
