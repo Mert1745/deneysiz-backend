@@ -36,7 +36,7 @@ public class BrandUtil {
                     .withHasVeganProduct(brand.isHasVeganProduct())
                     .withCategoryId(String.valueOf(getCategoryIdByCategoryName(brand.getCategory())))
                     .withCertificate(getCertificateList(brand.getCertificate()))
-                    .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
+                    .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
                     .withText(brand.getText())
                     .withCreatedAt(brand.getCreatedAt())
                     .getBrandDTO();
@@ -57,7 +57,7 @@ public class BrandUtil {
                     .withId(brand.getId())
                     .withName(brand.getName())
                     .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
-                    .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina()))
+                    .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
                     .getBrandDTO();
             brandDTOList.add(brandDTO);
         }
@@ -84,15 +84,16 @@ public class BrandUtil {
         return allCertificates;
     }
 
-    private int getBrandScore(boolean safe, Boolean parentCompanySafe, boolean vegan, boolean offerInChina) {
+    private int getBrandScore(boolean safe, Boolean parentCompanySafe, boolean vegan, boolean offerInChina, boolean hasVeganProduct) {
         int total = 0;
         total = total + (safe ? 4 : 0);
-        total = total + (vegan ? 2 : 0);
-        total = total + (offerInChina ? 4 : 0);
+        total = total + (vegan ? 1 : 0);
+        total = total + (offerInChina ? 1 : 0);
+        total = total + (hasVeganProduct ? 1 : 0);
         if (parentCompanySafe == null) {
-            return total + 2;
+            return total + 3;
         }
-        total = total + (parentCompanySafe ? 2 : 0);
+        total = total + (parentCompanySafe ? 3 : 0);
         return total;
     }
 }
