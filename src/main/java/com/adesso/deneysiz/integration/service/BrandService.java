@@ -32,7 +32,9 @@ public class BrandService {
         try {
             final List<Brand> brandsByCategory = getBrandsByCategory(categoryID);
             final List<BrandDTO> mappedBrands = brandUtil.mapBrandsToBrandsDTO(brandsByCategory);
-            return getSuccessResponse(mappedBrands, HttpStatus.OK, SUCCESS);
+            return mappedBrands.size() == 0
+                    ? getSuccessResponse(mappedBrands, HttpStatus.NOT_FOUND, BRAND_NOT_FOUND)
+                    : getSuccessResponse(mappedBrands, HttpStatus.OK, SEARCH_SUCCESS);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
@@ -42,7 +44,9 @@ public class BrandService {
         try {
             final List<Brand> brandsByCategory = getBrandsByCategory(categoryID);
             final List<BrandDTO> mappedBrands = brandUtil.mapBrandsToLessDetailedBrandDTO(brandsByCategory);
-            return getSuccessResponse(mappedBrands, HttpStatus.OK, SUCCESS);
+            return mappedBrands.size() == 0
+                    ? getSuccessResponse(mappedBrands, HttpStatus.NOT_FOUND, BRAND_NOT_FOUND)
+                    : getSuccessResponse(mappedBrands, HttpStatus.OK, SEARCH_SUCCESS);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
@@ -74,7 +78,9 @@ public class BrandService {
         try {
             final List<Brand> brands = brandRepository.findByNameContainingIgnoreCaseOrParentCompanyContainingIgnoreCase(query, query);
             final List<BrandDTO> mappedBrands = brandUtil.mapBrandsToLessDetailedBrandDTO(brands);
-            return getSuccessResponse(mappedBrands, HttpStatus.OK, SEARCH_SUCCESS);
+            return mappedBrands.size() == 0
+                    ? getSuccessResponse(mappedBrands, HttpStatus.NOT_FOUND, BRAND_NOT_FOUND)
+                    : getSuccessResponse(mappedBrands, HttpStatus.OK, SEARCH_SUCCESS);
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
