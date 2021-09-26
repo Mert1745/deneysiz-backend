@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "253920c5-bd33-4cc5-8096-92548c386a06",
+		"_postman_id": "a0085c37-950b-4f50-90af-3bd3d454126f",
 		"name": "Deneysiz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,12 +23,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/brands/add",
-							"protocol": "http",
+							"raw": "{{hostName}}/brands/add",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"brands",
 								"add"
@@ -52,12 +50,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/brands/search",
-							"protocol": "http",
+							"raw": "{{hostName}}/brands/search",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"brands",
 								"search"
@@ -81,12 +77,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/brands/byCategory",
-							"protocol": "http",
+							"raw": "{{hostName}}/brands/byCategory",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"brands",
 								"byCategory"
@@ -110,12 +104,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/brands/list",
-							"protocol": "http",
+							"raw": "{{hostName}}/brands/list",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"brands",
 								"list"
@@ -139,12 +131,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/brands/detail",
-							"protocol": "http",
+							"raw": "{{hostName}}/brands/detail",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"brands",
 								"detail"
@@ -173,12 +163,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/admin/login",
-							"protocol": "http",
+							"raw": "{{hostName}}/admin/login",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"admin",
 								"login"
@@ -190,11 +178,14 @@
 				{
 					"name": "/admin/saveUser",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"Mert17415\",\r\n    \"password\": \"mertşifre\",\r\n    \"role\":\"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,12 +193,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/admin/saveUser",
-							"protocol": "http",
+							"raw": "{{hostName}}/admin/saveUser",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"admin",
 								"saveUser"
@@ -228,12 +217,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/admin/getAllBrands",
-							"protocol": "http",
+							"raw": "{{hostName}}/admin/getAllBrands",
 							"host": [
-								"localhost"
+								"{{hostName}}"
 							],
-							"port": "8080",
 							"path": [
 								"admin",
 								"getAllBrands"
