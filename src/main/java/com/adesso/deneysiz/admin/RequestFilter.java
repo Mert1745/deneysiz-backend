@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.adesso.deneysiz.admin.SecurityConstants.AUTHORIZATION;
+import static com.adesso.deneysiz.admin.constant.SecurityConstants.AUTHORIZATION;
 
 @Component
 @RequiredArgsConstructor

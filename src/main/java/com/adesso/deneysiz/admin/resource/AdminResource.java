@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.admin;
+package com.adesso.deneysiz.admin.resource;
 
 import com.adesso.deneysiz.admin.entity.AdminDTO;
 import com.adesso.deneysiz.admin.entity.User;

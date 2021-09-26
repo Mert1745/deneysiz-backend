@@ -1,5 +1,6 @@
 package com.adesso.deneysiz.admin;
 
+import com.adesso.deneysiz.admin.constant.Claims;
 import com.adesso.deneysiz.admin.entity.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -9,15 +10,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-import static com.adesso.deneysiz.admin.SecurityConstants.*;
+import static com.adesso.deneysiz.admin.constant.SecurityConstants.*;
 
 @Component
 @RequiredArgsConstructor
 public class JWTProvider {
     public String createToken(User user) {
         return JWT.create()
-                .withClaim("userName", user.getUserName())
-                .withClaim("role", user.getRole())
+                .withClaim(Claims.USER_NAME, user.getUserName())
+                .withClaim(Claims.ROLE, user.getRole())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
     }

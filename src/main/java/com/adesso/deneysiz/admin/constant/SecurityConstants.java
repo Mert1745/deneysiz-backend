@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.admin;
+package com.adesso.deneysiz.admin.constant;
 
 public class SecurityConstants {
     public static final String SECRET = "SECRET_KEY";
