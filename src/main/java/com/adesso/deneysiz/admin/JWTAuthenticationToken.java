@@ -1,5 +1,6 @@
 package com.adesso.deneysiz.admin;
 
+import com.adesso.deneysiz.admin.constant.Claims;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -14,7 +15,7 @@ public class JWTAuthenticationToken extends AbstractAuthenticationToken {
 
     public JWTAuthenticationToken(@NonNull DecodedJWT jwt) {
         super(Collections.singleton(
-                Optional.ofNullable(jwt.getClaim("role").asString())
+                Optional.ofNullable(jwt.getClaim(Claims.ROLE).asString())
                 .map(SimpleGrantedAuthority::new)
                 .orElseThrow()));
         this.jwt = jwt;

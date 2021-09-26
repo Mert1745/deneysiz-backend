@@ -1,13 +1,12 @@
 package com.adesso.deneysiz.admin.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+@AllArgsConstructor
+@NoArgsConstructor
 public class AdminDTO {
     private String token;
-    private Boolean success;
+    private Boolean success = false;
 }
