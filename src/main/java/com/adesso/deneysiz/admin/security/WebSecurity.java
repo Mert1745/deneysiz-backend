@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.admin;
+package com.adesso.deneysiz.admin.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +25,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/login").permitAll()
+                // TODO mkose remove below line remove after create first user on prod
+                .antMatchers("/admin/saveUser").permitAll()
                 .antMatchers("/brands/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
@@ -42,5 +44,4 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             }
         };
     }
-
 }

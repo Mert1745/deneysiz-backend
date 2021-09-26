@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.admin;
+package com.adesso.deneysiz.admin.security;
 
 import com.adesso.deneysiz.admin.constant.Claims;
 import com.auth0.jwt.interfaces.DecodedJWT;

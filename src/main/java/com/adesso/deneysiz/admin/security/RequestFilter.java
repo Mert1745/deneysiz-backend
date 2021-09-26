@@ -1,4 +1,4 @@
-package com.adesso.deneysiz.admin;
+package com.adesso.deneysiz.admin.security;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.RequiredArgsConstructor;
