@@ -16,15 +16,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.adesso.deneysiz.integration.constant.ResponseMessage.*;
+import static com.adesso.deneysiz.integration.response.CustomResponse.getFailedError;
+import static com.adesso.deneysiz.integration.response.CustomResponse.getSuccessResponse;
+
 @RequiredArgsConstructor
 @Service
 public class BrandService {
-    private static final String SUCCESS = "Success";
-    private static final String SEARCH_SUCCESS = "Searched Successfully";
-    private static final String ADDED_SUCCESSFULLY = "Added Successfully";
-    private static final String ERROR_MESSAGE = "Error occured. Root cause is ";
-    private static final String BRAND_NOT_FOUND = "Brand Not Found";
-
     private final BrandRepository brandRepository;
     private final BrandUtil brandUtil;
 
@@ -96,18 +94,5 @@ public class BrandService {
         } catch (Exception e) {
             return getFailedError(Collections.singletonList(new BrandDTO()), e);
         }
-    }
-
-    private <T> ResponseBuilder<List<T>> getSuccessResponse(List<T> mappedBrands, HttpStatus httpStatus, String message) {
-        return ResponseBuilder.<List<T>>getInstance().
-                data(mappedBrands)
-                .status(httpStatus.value())
-                .message(message);
-    }
-
-    private <T> ResponseBuilder<List<T>> getFailedError(List<T> type, Exception e) {
-        return ResponseBuilder.<List<T>>getInstance().
-                message(ERROR_MESSAGE + e.getMessage())
-                .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
 }
