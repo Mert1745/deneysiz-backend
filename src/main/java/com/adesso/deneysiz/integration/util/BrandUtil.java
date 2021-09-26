@@ -25,22 +25,7 @@ public class BrandUtil {
         BrandDTO brandDTO;
 
         for (Brand brand : brandsByCategory) {
-            brandDTO = BrandDTOBuilder.instance()
-                    .newBrandDTO()
-                    .withId(brand.getId())
-                    .withName(brand.getName())
-                    .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
-                    .withOfferInChina(brand.isOfferInChina())
-                    .withSafe(brand.isSafe())
-                    .withVegan(brand.isVegan())
-                    .withHasVeganProduct(brand.isHasVeganProduct())
-                    .withCategoryId(String.valueOf(getCategoryIdByCategoryName(brand.getCategory())))
-                    .withCertificate(getCertificateList(brand.getCertificate()))
-                    .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
-                    .withText(brand.getText())
-                    .withCreatedAt(brand.getCreatedAt())
-                    .getBrandDTO();
-
+            brandDTO = getBrandDTO(brand);
             brandDTOList.add(brandDTO);
         }
 
@@ -52,16 +37,38 @@ public class BrandUtil {
         BrandDTO brandDTO;
 
         for (Brand brand : brands) {
-            brandDTO = BrandDTOBuilder.instance()
-                    .newBrandDTO()
-                    .withId(brand.getId())
-                    .withName(brand.getName())
-                    .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
-                    .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
-                    .getBrandDTO();
+            brandDTO = getLessDetailedDTO(brand);
             brandDTOList.add(brandDTO);
         }
         return brandDTOList;
+    }
+
+    private BrandDTO getBrandDTO(Brand brand) {
+        return BrandDTOBuilder.instance()
+                .newBrandDTO()
+                .withId(brand.getId())
+                .withName(brand.getName())
+                .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
+                .withOfferInChina(brand.isOfferInChina())
+                .withSafe(brand.isSafe())
+                .withVegan(brand.isVegan())
+                .withHasVeganProduct(brand.isHasVeganProduct())
+                .withCategoryId(String.valueOf(getCategoryIdByCategoryName(brand.getCategory())))
+                .withCertificate(getCertificateList(brand.getCertificate()))
+                .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
+                .withText(brand.getText())
+                .withCreatedAt(brand.getCreatedAt())
+                .getBrandDTO();
+    }
+
+    private BrandDTO getLessDetailedDTO(Brand brand) {
+        return BrandDTOBuilder.instance()
+                .newBrandDTO()
+                .withId(brand.getId())
+                .withName(brand.getName())
+                .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
+                .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
+                .getBrandDTO();
     }
 
 
