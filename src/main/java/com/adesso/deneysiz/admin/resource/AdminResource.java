@@ -30,14 +30,19 @@ public class AdminResource {
         return userService.saveUser(userDTO);
     }
 
-    @PostMapping("/addBrand")
-    public ResponseBuilder<AdminDTO> addBrand(@RequestBody Brand brand) {
+    @PostMapping("/saveBrand")
+    public ResponseBuilder<AdminDTO> saveBrand(@RequestBody Brand brand) {
         return adminService.saveNewBrand(brand);
     }
 
     @GetMapping("/getAllBrands")
     public ResponseBuilder<List<Brand>> getAllBrands() {
         return adminService.getAllBrands();
+    }
+
+    @PostMapping("getBrandById")
+    public ResponseBuilder<List<Brand>> getBrandById(@RequestBody Brand brand) {
+        return adminService.getBrandById(brand.getId());
     }
 
     @PostMapping("/deleteBrandById")

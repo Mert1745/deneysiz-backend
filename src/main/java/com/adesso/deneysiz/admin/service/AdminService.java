@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +36,21 @@ public class AdminService {
         } catch (Exception e) {
             return ResponseBuilder.<List<Brand>>getInstance()
                     .data(Collections.emptyList())
+                    .message("Error occured. Root cause is " + e.getMessage())
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        }
+    }
+
+    public ResponseBuilder<List<Brand>> getBrandById(final long id) {
+        try {
+            Optional<Brand> brandOptional = brandRepository.findById(id);
+            return ResponseBuilder.<List<Brand>>getInstance()
+                    .data(Collections.singletonList(brandOptional.get()))
+                    .message("Success")
+                    .status(HttpStatus.OK.value());
+        } catch (Exception e) {
+            return ResponseBuilder.<List<Brand>>getInstance()
+                    .data(null)
                     .message("Error occured. Root cause is " + e.getMessage())
                     .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
