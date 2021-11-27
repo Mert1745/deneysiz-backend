@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CertificateName {
-    LB("LB"),
-    PETA("Peta"),
-    UNILEVER("Unilever"),
-    XXXX("XXXX"),
+    LB("Leaping Bunny"),
+    BWB("Beauty Without Bunnies"),
+    VS("Vegan Society"),
+    VL("V-Label"),
     ;
 
     private final String name;
