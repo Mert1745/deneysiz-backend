@@ -80,7 +80,6 @@ public class BrandUtil {
     }
 
     private List<Certificate> getCertificateList(final String certificateNames) {
-        //TODO mkose learn the last certificate name
         final List<String> allCertificateNames = Arrays.stream(CertificateName.values()).map(CertificateName::getName).collect(Collectors.toList());
         final String[] arrayOfCertificate = certificateNames.split(",");
         final Set<String> setOfCertificate = new HashSet<>(Arrays.asList(arrayOfCertificate));
@@ -95,7 +94,7 @@ public class BrandUtil {
         int total = 0;
         total = total + (safe ? 4 : 0);
         total = total + (vegan ? 1 : 0);
-        total = total + (offerInChina ? 1 : 0);
+        total = total + (offerInChina ? 0 : 1);
         total = total + (hasVeganProduct ? 1 : 0);
         if (parentCompanySafe == null) {
             return total + 3;
