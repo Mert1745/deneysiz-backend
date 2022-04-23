@@ -28,7 +28,7 @@ public class Brand {
     @Column(name = "offer_in_china")
     private boolean offerInChina;
     @Column(name = "category")
-    private String category;
+    private String[] category;
     @Column(name = "parent_company_safe")
     private boolean parentCompanySafe;
     @Column(name = "certificate")

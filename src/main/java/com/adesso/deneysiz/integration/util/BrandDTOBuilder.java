@@ -68,7 +68,7 @@ public class BrandDTOBuilder {
         return this;
     }
 
-    public BrandDTOBuilder withCategoryId(String categoryId) {
+    public BrandDTOBuilder withCategoryId(List<String> categoryId) {
         brandDTO.setCategoryId(categoryId);
         return this;
     }

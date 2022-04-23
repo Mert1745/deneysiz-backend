@@ -9,10 +9,7 @@ import com.adesso.deneysiz.integration.util.ResponseBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.adesso.deneysiz.integration.response.ResponseHandler.*;
@@ -37,15 +34,26 @@ public class BrandService {
 
     private List<Brand> getBrandsByCategory(int categoryID) {
         final String categoryName = brandUtil.getCategoryNameByCategoryId(categoryID);
-        return categoryName.equals(Category.ALL.getName()) ? brandRepository.findAll()
-                : brandRepository.findBrandsByCategory(categoryName);
+        final List<Brand> allBrands = brandRepository.findAll();
+
+        if (categoryName.equals(Category.ALL.getName()))  return allBrands;
+
+        return allBrands.stream()
+                .filter(brand -> Arrays.asList(brand.getCategory()).contains(categoryName))
+                .collect(Collectors.toList());
     }
 
     public ResponseBuilder<List<Brand>> addNewBrand(final Brand brand) {
-        List<Category> categoryList = Arrays.stream(Category.values())
-                .filter(category -> category.getName().equals(brand.getCategory()))
-                .collect(Collectors.toList());
+        List<Category> categoryList = new ArrayList<>();
+
+        Arrays.stream(brand.getCategory())
+                .forEach(categoryName -> Arrays.stream(Category.values())
+                .filter(category -> category.getName().equals(categoryName))
+                .findFirst()
+                .ifPresent(categoryList::add));
+
         if (categoryList.isEmpty()) return getCategoryNameNotValidResponse();
+
         final Brand savedBrand = brandRepository.save(brand);
         return getSuccessResponse(Collections.singletonList(savedBrand));
     }

@@ -15,7 +15,7 @@ public class BrandDTO {
     private String name;
     private ParentCompany parentCompany;
     private Boolean offerInChina;
-    private String categoryId;
+    private List<String> categoryId;
     private List<Certificate> certificates;
     private Boolean safe;
     private Boolean vegan;

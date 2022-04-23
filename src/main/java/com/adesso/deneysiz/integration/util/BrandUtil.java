@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.adesso.deneysiz.integration.domain.CertificateName.*;
-
 @Component
 public class BrandUtil {
     public String getCategoryNameByCategoryId(final int categoryID) {
@@ -53,7 +51,7 @@ public class BrandUtil {
                 .withSafe(brand.isSafe())
                 .withVegan(brand.isVegan())
                 .withHasVeganProduct(brand.isHasVeganProduct())
-                .withCategoryId(String.valueOf(getCategoryIdByCategoryName(brand.getCategory())))
+                .withCategoryId(getCategoryIdArrayByCategoryName(brand.getCategory()))
                 .withCertificate(getCertificateList(brand.getCertificate()))
                 .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
                 .withText(brand.getText())
@@ -72,11 +70,16 @@ public class BrandUtil {
     }
 
 
-    private int getCategoryIdByCategoryName(final String categoryName) {
-        return Arrays.stream(Category.values())
+    private ArrayList<String> getCategoryIdArrayByCategoryName(final String[] categoryNameArray) {
+        ArrayList<String> categoryIdList = new ArrayList<>();
+
+        Arrays.stream(categoryNameArray)
+                .forEach(categoryName -> Arrays.stream(Category.values())
                 .filter(category -> category.getName().equals(categoryName))
-                .collect(Collectors.toList())
-                .get(0).getId();
+                .findFirst()
+                .ifPresent(category -> categoryIdList.add(String.valueOf(category.getId()))));
+
+        return categoryIdList;
     }
 
     private List<Certificate> getCertificateList(final String certificateNames) {

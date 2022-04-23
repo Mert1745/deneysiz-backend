@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
-    List<Brand> findBrandsByCategory(String categoryName);
     List<Brand> findByNameContainingIgnoreCaseOrParentCompanyContainingIgnoreCase(String name, String parentCompany);
     List<Brand> findAll();
 }
