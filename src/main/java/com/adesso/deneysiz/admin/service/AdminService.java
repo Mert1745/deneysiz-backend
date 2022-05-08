@@ -5,12 +5,14 @@ import com.adesso.deneysiz.integration.domain.Brand;
 import com.adesso.deneysiz.integration.repository.BrandRepository;
 import com.adesso.deneysiz.integration.util.ResponseBuilder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static com.adesso.deneysiz.admin.response.CustomResponse.getFailedResponse;
+import static com.adesso.deneysiz.admin.response.CustomResponse.getSuccessResponse;
 
 @Service
 @RequiredArgsConstructor
@@ -19,40 +21,32 @@ public class AdminService {
 
     public ResponseBuilder<AdminDTO> saveNewBrand(final Brand brand) {
         AdminDTO adminDTO = new AdminDTO();
+        //TODO mkose remove try/catch blocks
         try {
             brandRepository.save(brand);
         } catch (Exception e) {
             adminDTO.setSuccess(false);
-            return ResponseBuilder.<AdminDTO>getInstance().data(adminDTO).message("Error occured. Root cause is " + e.getMessage());
+            return getFailedResponse(adminDTO, e);
         }
         adminDTO.setSuccess(true);
-        return ResponseBuilder.<AdminDTO>getInstance().data(adminDTO).message("Success");
+        return getSuccessResponse(adminDTO);
     }
 
     public ResponseBuilder<List<Brand>> getAllBrands() {
         try {
             final List<Brand> all = brandRepository.findAll();
-            return ResponseBuilder.<List<Brand>>getInstance().data(all).message("Success").status(HttpStatus.OK.value());
+            return getSuccessResponse(all);
         } catch (Exception e) {
-            return ResponseBuilder.<List<Brand>>getInstance()
-                    .data(Collections.emptyList())
-                    .message("Error occured. Root cause is " + e.getMessage())
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            return getFailedResponse(Collections.emptyList(), e);
         }
     }
 
     public ResponseBuilder<List<Brand>> getBrandById(final long id) {
         try {
             Optional<Brand> brandOptional = brandRepository.findById(id);
-            return ResponseBuilder.<List<Brand>>getInstance()
-                    .data(Collections.singletonList(brandOptional.get()))
-                    .message("Success")
-                    .status(HttpStatus.OK.value());
+            return getSuccessResponse(Collections.singletonList(brandOptional.get()));
         } catch (Exception e) {
-            return ResponseBuilder.<List<Brand>>getInstance()
-                    .data(null)
-                    .message("Error occured. Root cause is " + e.getMessage())
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            return getFailedResponse(null, e);
         }
     }
 
@@ -62,9 +56,9 @@ public class AdminService {
             brandRepository.deleteById(id);
         } catch (Exception e) {
             adminDTO.setSuccess(false);
-            return ResponseBuilder.<AdminDTO>getInstance().data(adminDTO).message("Error occured. Root cause is " + e.getMessage());
+            return getFailedResponse(adminDTO, e);
         }
         adminDTO.setSuccess(true);
-        return ResponseBuilder.<AdminDTO>getInstance().data(adminDTO).message("Success");
+        return getSuccessResponse(adminDTO);
     }
 }
