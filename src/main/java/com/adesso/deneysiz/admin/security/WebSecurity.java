@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static com.adesso.deneysiz.admin.constant.AdminUrlConstants.*;
+import static com.adesso.deneysiz.integration.constant.BrandUrlConstants.BRANDS;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(ADMIN + LOGIN).permitAll()
                 // TODO mkose remove below line remove after create first user on prod
                 .antMatchers(ADMIN + SAVE_USER).permitAll()
-                .antMatchers("/brands/**").permitAll()
+                .antMatchers(BRANDS + "/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
