@@ -1,6 +1,7 @@
 package com.adesso.deneysiz.admin.security;
 
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import static com.adesso.deneysiz.admin.constant.AdminUrlConstants.*;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -24,9 +27,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/login").permitAll()
+                .antMatchers(ADMIN + LOGIN).permitAll()
                 // TODO mkose remove below line remove after create first user on prod
-                .antMatchers("/admin/saveUser").permitAll()
+                .antMatchers(ADMIN + SAVE_USER).permitAll()
                 .antMatchers("/brands/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
@@ -39,7 +42,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
+            public void addCorsMappings(@NotNull CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:8080", "http://localhost:3000",
                         "http://deneysiz-frontend-test.s3-website.eu-central-1.amazonaws.com");
             }

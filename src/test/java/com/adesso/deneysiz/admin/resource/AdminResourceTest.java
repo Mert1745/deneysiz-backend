@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static com.adesso.deneysiz.admin.constant.AdminUrlConstants.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -58,7 +59,7 @@ class AdminResourceTest {
         ResponseBuilder<AdminDTO> responseBuilder = getResponseBuilder(new AdminDTO(TOKEN, Boolean.TRUE));
         when(userService.getLoginResponse(any())).thenReturn(responseBuilder);
 
-        RequestBuilder requestBuilder = getRequestBuilder("/admin/login", new UserDTO());
+        RequestBuilder requestBuilder = getRequestBuilder(ADMIN + LOGIN, new UserDTO());
         mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
                 .andExpect(content().json(LOGIN_RESPONSE));
@@ -69,18 +70,18 @@ class AdminResourceTest {
         ResponseBuilder<User> responseBuilder = getResponseBuilder(new User("userName", "pazz", "admin"));
         when(userService.saveUser(any())).thenReturn(responseBuilder);
 
-        RequestBuilder requestBuilder = getRequestBuilder("/admin/saveUser", new User());
+        RequestBuilder requestBuilder = getRequestBuilder(ADMIN + SAVE_USER, new User());
 
         mockMvc.perform(requestBuilder).andExpect(status().isOk());
     }
 
     @Test
     @Disabled
-    public void saveBrand() throws Exception {
+    public void saveBrand() {
         ResponseBuilder<AdminDTO> responseBuilder = getResponseBuilder(new AdminDTO(TOKEN, Boolean.TRUE));
         when(adminService.saveNewBrand(any())).thenReturn(responseBuilder);
 
-        RequestBuilder requestBuilder = getRequestBuilder("/admin/saveBrand", new Brand());
+        RequestBuilder requestBuilder = getRequestBuilder(ADMIN + SAVE_BRAND, new Brand());
 
         //TODO mkose find a way to mock authorization/interceptor
 //        mockMvc.perform(requestBuilder).andExpect(status().isOk());
