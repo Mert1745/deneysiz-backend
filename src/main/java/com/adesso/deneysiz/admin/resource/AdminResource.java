@@ -40,7 +40,7 @@ public class AdminResource {
         return adminService.getAllBrands();
     }
 
-    @PostMapping("getBrandById")
+    @PostMapping("/getBrandById")
     public ResponseBuilder<List<Brand>> getBrandById(@RequestBody Brand brand) {
         return adminService.getBrandById(brand.getId());
     }
