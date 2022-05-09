@@ -69,6 +69,17 @@ class BrandServiceTest {
     }
 
     @Test
+    void addNewBrand_categoryNameNotValid() {
+        Brand brand = getBrandList().get(0);
+        brand.setCategory(new String[]{"I'm invalid category name"});
+
+        ResponseBuilder<List<Brand>> responseBuilder = brandService.addNewBrand(brand);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), responseBuilder.getStatus());
+        assertNull(responseBuilder.getData());
+    }
+
+    @Test
     void searchByNameAndCategoryName() {
         when(brandUtil.mapBrandsToLessDetailedBrandDTO(any())).thenReturn(getMappedBrandList());
         when(brandRepository.findByNameContainingIgnoreCaseOrParentCompanyContainingIgnoreCase(any(), any()))
