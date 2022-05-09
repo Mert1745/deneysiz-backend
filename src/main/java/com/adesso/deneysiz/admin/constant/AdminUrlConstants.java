@@ -8,4 +8,8 @@ public class AdminUrlConstants {
     public static final String GET_ALL_BRANDS = "/getAllBrands";
     public static final String GET_BRANDS_BY_ID = "/getBrandById";
     public static final String DELETE_BRANDS_BY_ID = "/deleteBrandById";
+
+    private AdminUrlConstants() {
+        throw new IllegalAccessError();
+    }
 }

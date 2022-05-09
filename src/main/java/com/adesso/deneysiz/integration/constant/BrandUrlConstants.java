@@ -7,4 +7,8 @@ public class BrandUrlConstants {
     public static final String SEARCH = "/search";
     public static final String LIST = "/list";
     public static final String DETAIL = "/detail";
+
+    private BrandUrlConstants() {
+        throw new IllegalAccessError();
+    }
 }

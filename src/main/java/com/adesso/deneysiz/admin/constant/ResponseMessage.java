@@ -5,4 +5,8 @@ public class ResponseMessage {
     public static final String WRONG_CREDENTIALS = "Wrong Credentials";
     public static final String SUCCESS = "Success";
     public static final String ERROR_OCCURRED = "Error occured. Root cause is ";
+
+    private ResponseMessage() {
+        throw new IllegalAccessError();
+    }
 }
