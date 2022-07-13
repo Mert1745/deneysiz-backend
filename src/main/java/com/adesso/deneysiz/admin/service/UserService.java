@@ -7,7 +7,6 @@ import com.adesso.deneysiz.admin.entity.UserDTO;
 import com.adesso.deneysiz.admin.repository.UserRepository;
 import com.adesso.deneysiz.integration.util.ResponseBuilder;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +35,6 @@ public class UserService {
         return getSuccessResponse(saved);
     }
 
-    @NotNull
     private User getUser(final UserDTO userDTO) {
         return new User(userDTO.getUserName(),
                 bCryptPasswordEncoder.encode(userDTO.getPassword()), userDTO.getRole().toLowerCase());

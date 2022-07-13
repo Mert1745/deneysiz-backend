@@ -6,7 +6,6 @@ import com.adesso.deneysiz.admin.security.JWTProvider;
 import com.adesso.deneysiz.integration.response.ResponseHandler;
 import com.adesso.deneysiz.integration.service.BrandService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -59,7 +58,6 @@ public class BrandResourceTestMockMvc {
                 .andExpect(status().isOk());
     }
 
-    @NotNull
     private MockHttpServletRequestBuilder getRequestBuilder(String url, Object content) {
         return MockMvcRequestBuilders
                 .post(url)

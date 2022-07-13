@@ -1,7 +1,6 @@
 package com.adesso.deneysiz.admin.security;
 
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +16,7 @@ import static com.adesso.deneysiz.integration.constant.BrandUrlConstants.BRANDS;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+public class CustomWebSecurity extends WebSecurityConfigurerAdapter {
     private final RequestFilter requestFilter;
 
     @Override
@@ -38,14 +37,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    //FIXME mkose find out why it doesn't work
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(@NotNull CorsRegistry registry) {
+            public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:8080", "http://localhost:3000",
-                        "http://deneysiz-frontend-test.s3-website.eu-central-1.amazonaws.com");
+                        "http://deneysiz-frontend-test.s3-website.eu-central-1.amazonaws.com",
+                        "http://deneysiz-admin.s3-website.eu-central-1.amazonaws.com/");
             }
         };
     }

@@ -14,35 +14,34 @@ import java.util.Date;
 @ToString
 @Entity
 @NoArgsConstructor
-@Table(name = "brand")
+@Table
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //TODO idea: define abstract base entity
     //TODO idea: set to passive instead of removing
-    @Column(name = "name")
+    @Column
     private String name;
-    @Column(name = "parent_company")
+    @Column
     private String parentCompany;
-    @Column(name = "offer_in_china")
+    @Column
     private boolean offerInChina;
-    @Column(name = "category")
+    @Column
     private String[] category;
-    @Column(name = "parent_company_safe")
+    @Column
     private boolean parentCompanySafe;
-    @Column(name = "certificate")
+    @Column
     private String certificate;
-    @Column(name = "is_safe")
+    @Column
     private boolean isSafe;
-    @Column(name = "vegan")
+    @Column
     private boolean vegan;
-    @Column(name = "has_vegan_product")
+    @Column
     private boolean hasVeganProduct;
-    @Column(name = "text")
+    @Column
     private String text;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_modified")
+    @Column
     private Date lastModified;
 }

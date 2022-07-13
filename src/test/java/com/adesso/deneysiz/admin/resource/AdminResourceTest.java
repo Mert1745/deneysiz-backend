@@ -11,7 +11,6 @@ import com.adesso.deneysiz.admin.service.UserService;
 import com.adesso.deneysiz.integration.domain.Brand;
 import com.adesso.deneysiz.integration.util.ResponseBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +54,7 @@ class AdminResourceTest {
     private UserRepository userRepository;
 
     @Test
+    @Disabled
     public void login() throws Exception {
         ResponseBuilder<AdminDTO> responseBuilder = getResponseBuilder(new AdminDTO(TOKEN, Boolean.TRUE));
         when(userService.getLoginResponse(any())).thenReturn(responseBuilder);
@@ -66,6 +66,7 @@ class AdminResourceTest {
     }
 
     @Test
+    @Disabled
     public void saveUser() throws Exception {
         ResponseBuilder<User> responseBuilder = getResponseBuilder(new User("userName", "pazz", "admin"));
         when(userService.saveUser(any())).thenReturn(responseBuilder);
@@ -87,7 +88,6 @@ class AdminResourceTest {
 //        mockMvc.perform(requestBuilder).andExpect(status().isOk());
     }
 
-    @NotNull
     private MockHttpServletRequestBuilder getRequestBuilder(String url, Object content) {
         return MockMvcRequestBuilders
                 .post(url)
