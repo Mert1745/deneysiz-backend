@@ -29,7 +29,7 @@ public class CustomWebSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(ADMIN + LOGIN).permitAll()
                 // TODO mkose remove below line remove after create first user on prod
-                .antMatchers(ADMIN + SAVE_USER).permitAll()
+//                .antMatchers(ADMIN + SAVE_USER).permitAll()
                 .antMatchers(BRANDS + "/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
@@ -44,7 +44,7 @@ public class CustomWebSecurity extends WebSecurityConfigurerAdapter {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:8080", "http://localhost:3000",
                         "http://deneysiz-frontend-test.s3-website.eu-central-1.amazonaws.com",
-                        "http://deneysiz-admin.s3-website.eu-central-1.amazonaws.com/");
+                        "http://deneysiz-admin.s3-website.eu-central-1.amazonaws.com");
             }
         };
     }
