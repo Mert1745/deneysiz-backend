@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 class BrandUtilTest {
@@ -46,6 +46,7 @@ class BrandUtilTest {
         assertEquals(brandDTOList.get(0).getName(), "Marka Adı");
         assertEquals(brandDTOList.get(0).getScore(), 4);
     }
+
     @Test
     void mapBrandsToLessDetailedBrandDTO_parentCompanyNull() {
         List<Brand> brandList = getBrandList();
@@ -57,7 +58,6 @@ class BrandUtilTest {
         assertEquals(brandDTOList.get(0).getName(), "Marka Adı");
         assertEquals(brandDTOList.get(0).getScore(), 4);
     }
-
 
     private List<Brand> getBrandList() {
         Brand brand = new Brand();

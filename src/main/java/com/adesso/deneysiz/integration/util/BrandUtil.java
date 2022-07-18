@@ -2,6 +2,7 @@ package com.adesso.deneysiz.integration.util;
 
 import com.adesso.deneysiz.integration.domain.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class BrandUtil {
                 .withHasVeganProduct(brand.isHasVeganProduct())
                 .withCategoryId(getCategoryIdArrayByCategoryName(brand.getCategory()))
                 .withCertificate(getCertificateList(brand.getCertificate()))
-                .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
+                .withScore(getBrandScore(brand.isSafe(), brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct(), brand.getParentCompany()))
                 .withText(brand.getText())
                 .withCreatedAt(brand.getLastModified())
                 .getBrandDTO();
@@ -65,7 +66,7 @@ public class BrandUtil {
                 .withId(brand.getId())
                 .withName(brand.getName())
                 .withParentCompany(brand.getParentCompany(), brand.isParentCompanySafe())
-                .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct()))
+                .withScore(getBrandScore(brand.isSafe(), brand.getParentCompany().isEmpty() ? null : brand.isParentCompanySafe(), brand.isVegan(), brand.isOfferInChina(), brand.isHasVeganProduct(), brand.getParentCompany()))
                 .getBrandDTO();
     }
 
@@ -93,13 +94,15 @@ public class BrandUtil {
         return allCertificates;
     }
 
-    private int getBrandScore(boolean safe, Boolean parentCompanySafe, boolean vegan, boolean offerInChina, boolean hasVeganProduct) {
+    private int getBrandScore(boolean safe, Boolean parentCompanySafe,
+                              boolean vegan, boolean offerInChina,
+                              boolean hasVeganProduct, String parentCompany) {
         int total = 0;
         total = total + (safe ? 4 : 0);
         total = total + (vegan ? 1 : 0);
         total = total + (offerInChina ? 0 : 1);
         total = total + (hasVeganProduct ? 1 : 0);
-        if (parentCompanySafe == null) {
+        if (!StringUtils.hasText(parentCompany)) {
             return total + 3;
         }
         total = total + (parentCompanySafe ? 3 : 0);
