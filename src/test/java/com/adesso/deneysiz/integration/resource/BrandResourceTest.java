@@ -40,14 +40,14 @@ public class BrandResourceTest {
         responseBuilderBrandDTO = ResponseBuilder.<List<BrandDTO>>getInstance().data(Collections.singletonList(new BrandDTO()));
     }
 
-    @Test
-    public void addNewBrand() {
-        when(brandService.addNewBrand(any())).thenReturn(responseBuilderBrand);
-
-        ResponseBuilder<List<Brand>> listResponseBuilder = brandResource.addNewBrand(new Brand());
-
-        Assertions.assertEquals(listResponseBuilder.getData().size(), 1);
-    }
+//    @Test
+//    public void addNewBrand() {
+//        when(brandService.addNewBrand(any())).thenReturn(responseBuilderBrand);
+//
+//        ResponseBuilder<List<Brand>> listResponseBuilder = brandResource.addNewBrand(new Brand());
+//
+//        Assertions.assertEquals(listResponseBuilder.getData().size(), 1);
+//    }
 
     @Test
     void getBrandsByCategory() {

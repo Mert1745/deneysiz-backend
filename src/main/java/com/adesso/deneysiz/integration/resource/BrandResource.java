@@ -27,10 +27,10 @@ public class BrandResource {
         return brandService.getMappedBrands(categoryDTO.getCategoryId());
     }
 
-    @PostMapping(ADD)
-    public ResponseBuilder<List<Brand>> addNewBrand(@RequestBody Brand brand) {
-        return brandService.addNewBrand(brand);
-    }
+//    @PostMapping(ADD)
+//    public ResponseBuilder<List<Brand>> addNewBrand(@RequestBody Brand brand) {
+//        return brandService.addNewBrand(brand);
+//    }
 
     @PostMapping(SEARCH)
     public ResponseBuilder<List<BrandDTO>> searchByNameAndCategoryName(@RequestBody NameDTO nameDTO) {
